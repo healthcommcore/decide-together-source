@@ -1,3 +1,6 @@
 node_modules/
 .cache/
 public
+.*.swp
+yarn.lock
+package-lock.json
