@@ -4,3 +4,5 @@ public
 .*.swp
 yarn.lock
 package-lock.json
+data/
+firebase.config.js
