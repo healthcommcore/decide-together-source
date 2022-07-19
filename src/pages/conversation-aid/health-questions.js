@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { arrayFrom } from '../../helpers/utilities';
+import { dbQueryer } from '../../services/dbqueryer';
 
 const HealthQuestions = () => {
+  let results;
+
+  useEffect( () => {
+    const getResults = async () => {
+      results = await dbQueryer.getResults('annual_screening');
+    }
+    getResults();
+  }, [results]);
+
   const ageArray = arrayFrom(75,89);
   ageArray.push("90+");
-  console.log(ageArray);
+
   return (
     <Container>
       <Form>
