@@ -1,28 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { arrayFrom } from '../../helpers/utilities';
-import { dbQueryer } from '../../services/dbqueryer';
+import DTRadio from '../../components/DTRadio';
+import questionLabels from '../../data/health-question-labels';
 
 const HealthQuestions = () => {
   let results;
 
-  useEffect( () => {
-    const getResults = async () => {
-      results = await dbQueryer.getResults('annual_screening');
-    }
-    getResults();
-  }, [results]);
-
   const ageArray = arrayFrom(75,89);
   ageArray.push("90+");
+
+  const modalityQuestion = questionLabels.radios.pop();
 
   return (
     <Container>
       <Form>
         <Form.Group>
-          <Form.Label>What is your age?</Form.Label>
+          <Form.Label>{ questionLabels.select.label }</Form.Label>
           <Form.Select aria-label="Select your age">
           { ageArray.map( (num, i) => {
             return (
@@ -31,6 +27,16 @@ const HealthQuestions = () => {
           })}
           </Form.Select>
         </Form.Group>
+        { questionLabels.radios.map( (radio, idx) => {
+          return (
+            <DTRadio
+              key={ idx }
+              label={ radio.label }
+              name={ radio.name }
+              choices={ radio.choices }
+            />
+          );
+        })}
       </Form>
     </Container>
   );
