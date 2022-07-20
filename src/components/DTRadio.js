@@ -25,6 +25,7 @@ const DTRadio = ({ label, name, choices, followup, onCheck }) => {
         <DTRadio
           label={ followup.label }
           choices={ followup.choices }
+          name={ `${ name }_${ followup.response }` }
         />
       </div>
     )}
