@@ -34,6 +34,7 @@ const HealthQuestions = () => {
               label={ radio.label }
               name={ radio.name }
               choices={ radio.choices }
+              followup={ radio.followup }
             />
           );
         })}

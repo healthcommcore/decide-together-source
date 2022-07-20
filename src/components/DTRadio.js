@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 
-const DTRadio = ({ label, name, choices, onCheck }) => {
+const DTRadio = ({ label, name, choices, followup, onCheck }) => {
+
+  const [isVisible, setVisibility] = useState(false);
   return (
+    <>
     <Form.Group>
       <Form.Label>{ label }</Form.Label>
       { choices.map( (choice, i) => {
@@ -17,6 +20,15 @@ const DTRadio = ({ label, name, choices, onCheck }) => {
         );
       })}
     </Form.Group>
+    { followup && (
+      <div className={ isVisible ? 'd-block' : 'd-none' }>
+        <DTRadio
+          label={ followup.label }
+          choices={ followup.choices }
+        />
+      </div>
+    )}
+  </>
   );
 }
 
