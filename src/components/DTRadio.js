@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
+import PropTypes from 'prop-types';
 
 const DTRadio = ({ label, name, choices, followup, saveResponse }) => {
 
@@ -43,6 +44,14 @@ const DTRadio = ({ label, name, choices, followup, saveResponse }) => {
       )}
     </>
   );
+}
+
+DTRadio.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.string,
+  choices: PropTypes.array,
+  followup: PropTypes.object,
+  followup: PropTypes.func
 }
 
 export default DTRadio;
