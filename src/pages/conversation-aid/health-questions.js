@@ -13,10 +13,17 @@ const HealthQuestions = () => {
   ageArray.push("90+");
 
   const modalityQuestion = questionLabels.radios.pop();
+  const saveResponse = (...responses) => {
+    /*
+    const [name, resp, ...rest] = responses;
+    console.log(name, resp);
+    */
+  }
 
   return (
     <Container>
       <Form>
+  {/* Select list for age */}
         <Form.Group>
           <Form.Label>{ questionLabels.select.label }</Form.Label>
           <Form.Select aria-label="Select your age">
@@ -27,6 +34,7 @@ const HealthQuestions = () => {
           })}
           </Form.Select>
         </Form.Group>
+  {/* Mult choice questions 2-5 */}
         { questionLabels.radios.map( (radio, idx) => {
           return (
             <DTRadio
@@ -35,9 +43,17 @@ const HealthQuestions = () => {
               name={ radio.name }
               choices={ radio.choices }
               followup={ radio.followup }
+              saveResponse={ saveResponse }
             />
           );
         })}
+  {/* Modality mult choice question extracted for special styling */}
+        <DTRadio
+          label={ modalityQuestion.label }
+          name={ modalityQuestion.name }
+          choices={ modalityQuestion.choices }
+          saveResponse={ saveResponse }
+        />
       </Form>
     </Container>
   );
