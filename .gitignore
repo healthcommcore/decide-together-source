@@ -3,6 +3,7 @@ node_modules/
 public
 .*.swp
 yarn.lock
+yarn-error.log
 package-lock.json
 data/
 firebase.config.js
