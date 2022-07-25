@@ -33,7 +33,7 @@ const DTRadio = ({ label, name, choices, followup, saveResponse }) => {
         })}
       </Form.Group>
       { followup && (
-        <div className={ isVisible ? 'd-block' : 'd-none' }>
+        <div title={ `${ name }-followup` } style={{ display: isVisible ? 'block' : 'none' }}>
           <DTRadio
             label={ followup.label }
             choices={ followup.choices }
@@ -51,7 +51,7 @@ DTRadio.propTypes = {
   name: PropTypes.string,
   choices: PropTypes.array,
   followup: PropTypes.object,
-  followup: PropTypes.func
+  saveResponse: PropTypes.func
 }
 
 export default DTRadio;

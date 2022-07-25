@@ -1,0 +1,23 @@
+{
+  "label": "Test question",
+  "name": "test_question",
+  "choices": ["Yes", "No", "I don't know"],
+  "followup": {
+    "response": "Yes",
+    "label": "Choose one",
+    "choices": [
+      {
+        "label": "Option 1", 
+        "name": "1"
+      },
+      {
+        "label": "Option 2", 
+        "name": "2"
+      },
+      {
+        "label": "Option 3", 
+        "name": "3"
+      }
+    ]
+  }
+}
