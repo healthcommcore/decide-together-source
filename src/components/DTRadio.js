@@ -8,11 +8,10 @@ const DTRadio = ({ label, name, choices, followup, saveResponse }) => {
 
   const evaluate = (e) => {
     const resp = e.target.id;
-    const name = e.target.name;
     if (followup) {
       followup.response === resp ? setVisibility(true) : setVisibility(false);
     }
-    saveResponse(name, resp);
+    saveResponse(e);
   }
 
   return (
@@ -27,6 +26,7 @@ const DTRadio = ({ label, name, choices, followup, saveResponse }) => {
               name={ name }
               onClick={ evaluate }
               label={ typeof choice === 'object' ? choice.label : choice }
+              value={ typeof choice === 'object' ? choice.name : choice }
               id={ typeof choice === 'object' ? choice.name : choice }
             />
           );

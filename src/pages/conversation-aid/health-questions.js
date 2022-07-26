@@ -1,23 +1,23 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { arrayFrom } from '../../helpers/utilities';
 import DTRadio from '../../components/DTRadio';
+import { getResponses, setResponses } from '../../state/responsesSlice';
 import questionLabels from '../../data/health-question-labels';
 
 const HealthQuestions = () => {
-  let results;
-
+  const dispatch = useDispatch();
   const ageArray = arrayFrom(75,89);
   ageArray.push("90+");
 
   const modalityQuestion = questionLabels.radios.pop();
-  const saveResponse = (...responses) => {
-    /*
-    const [name, resp, ...rest] = responses;
-    console.log(name, resp);
-    */
+  const saveResponse = (e) => {
+    const { id, name, value } = e.target;
+    console.log({ name, value });
+    dispatch( setResponses({ name, value}) );
   }
 
   return (
@@ -26,7 +26,7 @@ const HealthQuestions = () => {
   {/* Select list for age */}
         <Form.Group>
           <Form.Label>{ questionLabels.select.label }</Form.Label>
-          <Form.Select aria-label="Select your age">
+          <Form.Select aria-label="Select your age" onChange={ saveResponse } name="age">
           { ageArray.map( (num, i) => {
             return (
               <option key={ i } value={ num }>{ num }</option>
