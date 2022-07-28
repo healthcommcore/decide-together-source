@@ -7,16 +7,18 @@ import { arrayFrom } from '../../helpers/utilities';
 import DTRadio from '../../components/DTRadio';
 import { getResponses, setResponses } from '../../state/responsesSlice';
 import questionLabels from '../../data/health-question-labels';
+import usePrepareResponse from '../../hooks/usePrepareResponse';
 
 const HealthQuestions = () => {
   const dispatch = useDispatch();
+  const prepareResponse = usePrepareResponse('isfollowup');
   const ageArray = arrayFrom(75,89);
   ageArray.push("90+");
 
   const modalityQuestion = questionLabels.radios.pop();
+
   const saveResponse = (e) => {
-    const { id, name, value } = e.target;
-    console.log({ name, value });
+    const { name, value } = prepareResponse(e);
     dispatch( setResponses({ name, value}) );
   }
 
@@ -27,6 +29,7 @@ const HealthQuestions = () => {
         <Form.Group>
           <Form.Label>{ questionLabels.select.label }</Form.Label>
           <Form.Select aria-label="Select your age" onChange={ saveResponse } name="age">
+            <option value="0">--Select your age--</option>
           { ageArray.map( (num, i) => {
             return (
               <option key={ i } value={ num }>{ num }</option>

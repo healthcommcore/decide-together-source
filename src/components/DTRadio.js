@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
 
-const DTRadio = ({ label, name, choices, followup, saveResponse }) => {
+const DTRadio = ({ label, name, choices, followup, isFollowup, saveResponse }) => {
 
   const [isVisible, setVisibility] = useState(false);
-
   const evaluate = (e) => {
     const resp = e.target.id;
     if (followup) {
@@ -28,6 +27,7 @@ const DTRadio = ({ label, name, choices, followup, saveResponse }) => {
               label={ typeof choice === 'object' ? choice.label : choice }
               value={ typeof choice === 'object' ? choice.name : choice }
               id={ typeof choice === 'object' ? choice.name : choice }
+              data-isfollowup={ isFollowup }
             />
           );
         })}
@@ -39,6 +39,7 @@ const DTRadio = ({ label, name, choices, followup, saveResponse }) => {
             choices={ followup.choices }
             name={ `${ name }_${ followup.response }` }
             saveResponse={ saveResponse }
+            isFollowup
           />
         </div>
       )}
