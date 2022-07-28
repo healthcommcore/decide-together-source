@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { arrayFrom } from '../../helpers/utilities';
+import DTLayout from '../../components/DTLayout';
 import DTRadio from '../../components/DTRadio';
 import { getResponses, setResponses } from '../../state/responsesSlice';
 import questionLabels from '../../data/health-question-labels';
@@ -13,8 +14,6 @@ const HealthQuestions = () => {
   const dispatch = useDispatch();
   const prepareResponse = usePrepareResponse('isfollowup');
   const ageArray = arrayFrom(75,89);
-  ageArray.push("90+");
-
   const modalityQuestion = questionLabels.radios.pop();
 
   const saveResponse = (e) => {
@@ -22,8 +21,10 @@ const HealthQuestions = () => {
     dispatch( setResponses({ name, value}) );
   }
 
+  ageArray.push("90+");
+
   return (
-    <Container>
+    <DTLayout>
       <Form>
   {/* Select list for age */}
         <Form.Group>
@@ -58,7 +59,7 @@ const HealthQuestions = () => {
           saveResponse={ saveResponse }
         />
       </Form>
-    </Container>
+    </DTLayout>
   );
 }
 
